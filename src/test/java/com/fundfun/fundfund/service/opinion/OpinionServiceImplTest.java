@@ -25,9 +25,9 @@ class OpinionServiceImplTest {
         for(int i=0; i<10; i++)
             opinionService.insert(Opinion.builder()
                     .id(null)
-                    .userId(null)
-                    .voteId(null)
-                    .userId(null)
+                    .user(null)
+                    .vote(null)
+                    .votedFor(null)
                     .build());
     }
 
@@ -51,7 +51,7 @@ class OpinionServiceImplTest {
 
     @Test
     public void 표_삭제() throws Exception {
-        Opinion op = Opinion.builder().id(null).userId(null).voteId(null).votedFor(null).build();
+        Opinion op = Opinion.builder().id(null).user(null).vote(null).votedFor(null).build();
 
         UUID uuid = opinionService.selectAll().get(0).getId();
         //System.out.println(opinionService.selectAll().get(0).getId());

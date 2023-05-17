@@ -14,6 +14,6 @@ public class PostDto {
 //    private String postDate;//
 //    private String updateDate;//
 //    private String category;//
-//    private String status;//
+//    private String dstatus;//
 }
 

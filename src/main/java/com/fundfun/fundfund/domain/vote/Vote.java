@@ -31,11 +31,11 @@ public class Vote {
     @Builder.Default
     private StVote status = StVote.PROCEED;
 
-    @OneToMany(mappedBy="vote")
-    private List<Opinion> opinions = new ArrayList<>();
+   //@OneToMany(mappedBy="vote")
+    //private List<Opinion> opinions = new ArrayList<>();
 
-    @OneToMany(mappedBy="vote")
-    private List<Portfolio> portfolios = new ArrayList<>();
+   // @OneToMany(mappedBy="vote")
+    //private List<Portfolio> portfolios = new ArrayList<>();
 
     public void updateStatus() {
         if (LocalDateTime.now().isAfter(voteEnd)) {
