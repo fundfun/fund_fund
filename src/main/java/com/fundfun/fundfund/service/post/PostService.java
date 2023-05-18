@@ -12,14 +12,15 @@ public interface PostService {
     //전체 게시물 조회
     List<Post> selectAll();
 
-    //제목으로 게시물 조회
+    //제목으로 게시물 검색
     List<Post> selectPostByKeyword(String keyword);
 
     //작성자로 게시물 조회
     Optional<Post> selectPostByUserId(UUID userId);
 
-    //상태로 게시물 조회
-    List<Post> selectPostByStatus(String status);
+    //상태로 게시물 조회(최신순)
+    List<Post> selectPostByStatus(StPost status);
+
 
     //카테고리로 게시물 조회
     List<Post> selectPostByCategory(String category);
@@ -44,7 +45,6 @@ public interface PostService {
 
     //좋아요 100개 이상 넘어갔을 때 상태 변경
     void updatePostStatus(Post post);
-  
   
     //게시물의 좋아요 개수 조회
     int getLikeById(UUID postId);

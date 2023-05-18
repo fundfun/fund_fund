@@ -58,8 +58,8 @@ class PostServiceImplTest {
 
     @Test
     public void 상태_게시물조회() throws Exception {
-        List<Post> list = postService.selectPostByStatus(null);
-        for (Post p : list) System.out.println(p);
+        List<Post> list = postService.selectPostByStatus(StPost.EARLY_IDEA);
+        for (Post p : list) System.out.println(p.getCreatedAt() + "에 등록된 게시물의 상태 : " + p.getStatusPost());
     }
 
     @Test
@@ -141,7 +141,7 @@ class PostServiceImplTest {
     public void 상태변경및투표생성() throws Exception{
         for(int i=0; i<11; i++){
             List<Post> list = postService.selectAll();
-            Post post = list.get(4);
+            Post post = list.get(5);
             UUID id = post.getId();
             if(post.getLikePost()>=10) postService.updateStatus(post, StPost.PREPRODUCT);
             postService.addLike(id);
@@ -150,7 +150,7 @@ class PostServiceImplTest {
         }
 
         List<Post> list = postService.selectAll();
-        Post post = list.get(4);
+        Post post = list.get(5);
         Vote vote = voteService.selectVoteByPostId(post.getId());
         if(vote!=null){
             System.out.println(vote.getPost().getId() + " 글에 생성된 투표의 정보 : " + vote.getStatus() + ", " + vote.getVoteStart() + ", " + vote.getVoteEnd() + ", " + vote.getId());
