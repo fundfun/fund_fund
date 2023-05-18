@@ -13,4 +13,6 @@ public interface ReplyRepository extends JpaRepository<Reply, UUID> {
 
     @Query(value="select r from Reply r where r.post = ?1 order by r.createdAt")
     List<Reply> findNewestReplyByPost(Post post);
+
+    List<Reply> findByPostId(UUID postId);
 }

@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ReplyService {
+    //댓글 아이디로 댓글 조회
+    Reply selectById(UUID replyID);
+
     //댓글 전체 조회
     List<Reply> selectAll();
 
@@ -26,4 +29,6 @@ public interface ReplyService {
     //댓글 삭제
     void deleteReply(UUID replyId);
 
+    //해당 게시글에 달린 댓글의 개수 조회
+    int countByPostId(UUID postId);
 }

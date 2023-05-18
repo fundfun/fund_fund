@@ -33,16 +33,8 @@ class OpinionServiceImplTest {
 
 
 
-//  @Test
-    //  public void 표_등록() throws Exception {
-     //   for (int i = 0; i < 10; i++) {
-     //       opinionService.insert(Opinion.builder()
-      //              .id(null)
-         //           .user(null)
-            //        .vote(null)
-             //       .votedFor(null)
-                //    .build());
-//        }//   }
+    @Test
+    public void 표_등록() throws Exception {
 //        for(int i=0; i<10; i++)
 //            opinionService.insert(Opinion.builder()
 //                    .id(null)
@@ -50,7 +42,7 @@ class OpinionServiceImplTest {
 //                    .vote(null)
 //                    .votedFor(null)
 //                    .build());
-//    }
+    }
 
     @Test
     public void 표_조회() throws Exception {

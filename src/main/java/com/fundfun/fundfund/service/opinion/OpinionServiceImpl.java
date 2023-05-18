@@ -56,7 +56,6 @@ public class OpinionServiceImpl implements OpinionService{
         if (op == null)
             throw new RuntimeException("표 번호 오류로 수정할 수 없습니다.");
 
-        opinionRep.delete(op);
         opinionRep.save(op);
     }
 

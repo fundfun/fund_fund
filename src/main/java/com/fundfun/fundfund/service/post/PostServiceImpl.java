@@ -29,7 +29,7 @@ public class PostServiceImpl implements PostService {
 
     //전체 게시물 조회
     public List<Post> selectAll() {
-        return postRep.findAll();
+        return postRep.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 
     //제목으로 게시물 조회
@@ -43,8 +43,8 @@ public class PostServiceImpl implements PostService {
         return postRep.findById(userId);
     }
 
-    //상태로 게시물 조회
-    public List<Post> selectPostByStatus(String status) {
+    //상태로 게시물 조회(최신순)
+    public List<Post> selectPostByStatus(StPost status) {
         return postRep.findByStatusPost(status);
     }
 

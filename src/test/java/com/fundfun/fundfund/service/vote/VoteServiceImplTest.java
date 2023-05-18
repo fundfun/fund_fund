@@ -14,10 +14,15 @@ class VoteServiceImplTest {
     @Autowired
     VoteService voteService;
 
-
-
-
-
+    @Test
+    public void 투표_등록() throws Exception{
+        for(int i=0; i<5; i++){
+//            voteService.createVote(Vote.builder()
+//                    .id(null)
+//                    .postId(null).voteStart(null)
+//                    .voteEnd(null).build());
+        }
+    }
 
     @Test
     public void 상태_업데이트(){
