@@ -1,6 +1,9 @@
 package com.fundfun.fundfund.service.portfolio;
 
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
+import com.fundfun.fundfund.domain.post.Post;
+import com.fundfun.fundfund.domain.user.Users;
+import com.fundfun.fundfund.domain.vote.Vote;
 
 
 import java.util.List;
@@ -13,19 +16,24 @@ public interface PortfolioService {
     List<Portfolio> selectAll();
 
     //제목으로 포트폴리오 조회
-    List<Portfolio> selectPortfolioByKeyword(String keyword);
+    //List<Portfolio> selectPortfolioByTitle(String title);
 
-    //작성자로 포트폴리오 조회
-    Optional<Portfolio> selectPortfolioByUserId(UUID userId);
+    //포폴id로 포트폴리오 조회
+    Portfolio selectPortById(UUID portfolioId);
+
+    //보트 id로 포폴조회
+    Portfolio selectPortByVoteId(UUID voteId);
+
+    //유저 id로 포트폴리오 조회
+    Portfolio selectPortByUserId(UUID UserId);
     
     //위험도로 포트폴리오 조회
-    List<Portfolio> selectPortfolioByWarnLevel(String warnLevel);
+    //List<Portfolio> selectPortfolioByWarnLevel(String warnLevel);
     
     //예상수익율로 포트폴리오 조회
-    List<Portfolio> selectPortfolioByBeneRatio(Integer beneRatio);
+    //List<Portfolio> selectPortfolioByBeneRatio(Integer beneRatio);
 
     //포트폴리오 생성
-    void createPort(Portfolio portfolio);
 
     //포트폴리오 삭제
     void delete(Portfolio portfolio);
@@ -33,4 +41,5 @@ public interface PortfolioService {
     //포트폴리오 수정
     void updatePort(Portfolio portfolio);
 
+    void createPort(Post post, Users user, Vote vote);
 }

@@ -141,16 +141,16 @@ class PostServiceImplTest {
     public void 상태변경및투표생성() throws Exception{
         for(int i=0; i<11; i++){
             List<Post> list = postService.selectAll();
-            Post post = list.get(4);
+            Post post = list.get(6);
             UUID id = post.getId();
-            if(post.getLikePost()>=10) postService.updateStatus(post, StPost.PREPRODUCT);
+            if(post.getLikePost()>=5 && post.getStatusPost()==StPost.EARLY_IDEA) postService.updateStatus(post, StPost.PREPRODUCT);
             postService.addLike(id);
 
             System.out.println(i + "번쨰 시도) " + id + " 게시물의 좋아요 개수 : " + post.getLikePost() + ", 상태 = " + post.getStatusPost());
         }
 
         List<Post> list = postService.selectAll();
-        Post post = list.get(4);
+        Post post = list.get(6);
         Vote vote = voteService.selectVoteByPostId(post.getId());
         if(vote!=null){
             System.out.println(vote.getPost().getId() + " 글에 생성된 투표의 정보 : " + vote.getStatus() + ", " + vote.getVoteStart() + ", " + vote.getVoteEnd() + ", " + vote.getId());
