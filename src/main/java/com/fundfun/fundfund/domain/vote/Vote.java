@@ -32,17 +32,10 @@ public class Vote {
     @Builder.Default
     private StVote status = StVote.PROCEED;
 
-<<<<<<< HEAD
-   //@OneToMany(mappedBy="vote")
-    //private List<Opinion> opinions = new ArrayList<>();
-
-   // @OneToMany(mappedBy="vote")
-=======
     //@OneToMany(mappedBy="vote")
     //private List<Opinion> opinions = new ArrayList<>();
 
     //@OneToMany(mappedBy="vote")
->>>>>>> e8ce8d09d40bef0b5ac3790b9c57421fdfbb9e3c
     //private List<Portfolio> portfolios = new ArrayList<>();
 
     public void updateStatus() {
