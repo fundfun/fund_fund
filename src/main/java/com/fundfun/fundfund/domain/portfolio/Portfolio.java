@@ -1,5 +1,4 @@
 package com.fundfun.fundfund.domain.portfolio;
-
 import com.fundfun.fundfund.domain.post.Post;
 import com.fundfun.fundfund.domain.user.Users;
 import com.fundfun.fundfund.domain.vote.Vote;
@@ -28,17 +27,24 @@ public class Portfolio extends BaseTimeEntity {
     @ManyToOne
     private Vote vote;
 
-    @ManyToOne
+    @OneToOne
     private Users user;
 
     @ManyToOne
     private Post post;
+
 
     private String title;
     private String ContentPortfolio;
     private String warnLevel;
     private int beneRatio;
 
+
+    public void linkVote(Vote vote) {this.vote = vote;}
+
+    public void linkUsers(Users user) {this.user = user;}
+
+    public void linkPost(Post post) {this.post = post;}
 
     public void setTitle(String title) {
         this.title = title;

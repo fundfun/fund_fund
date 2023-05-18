@@ -10,10 +10,14 @@ import java.util.UUID;
 @Repository
 public interface PortRepository extends JpaRepository<Portfolio, UUID> {
 
-    List<Portfolio> findByTitleContaining(String keyword);
-
-    List<Portfolio> findByWarnLevel(String warnLevel);
+   // List<Portfolio> findByWarnLevel(String warnLevel);
 
 
-    List<Portfolio> findByBeneRatio(int beneratio);
+    // List<Portfolio> findByBeneRatio(int beneratio);
+
+    List<Portfolio> findByTitle(String title);
+
+    Portfolio findByVoteId(UUID voteId);
+
+    Portfolio findByUserId(UUID userId);
 }

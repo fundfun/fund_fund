@@ -2,9 +2,11 @@ package com.fundfun.fundfund.service.portfolio;
 
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
 import com.fundfun.fundfund.domain.post.Post;
+import com.fundfun.fundfund.domain.user.Users;
+import com.fundfun.fundfund.domain.vote.Vote;
 import com.fundfun.fundfund.repository.portfolio.PortRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,38 +16,57 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
     public class PortfolioServiceImpl implements PortfolioService {
+    @Autowired
     private final PortRepository portRep;
-    private final ModelMapper modelMapper;
 
-    public void createPort(Portfolio portfolio) {
-        portRep.save(portfolio);
+
+    public void createPort(Post post, Users user, Vote vote){
+        Portfolio port = new Portfolio();
+        port.linkPost(post);
+        port.linkUsers(user);
+        port.linkVote(vote);
+        portRep.save(port);
     }
 
     //전체 포폴조회
     public List<Portfolio> selectAll() {
         return portRep.findAll();
     }
-    //제목으로 포폴조회
-    public List<Portfolio> selectPortfolioByKeyword(String keyword) {
-        return portRep.findByTitleContaining(keyword);
 
+    //포트폴리오 아이디로 포폴조회
+    public Portfolio selectPortById(UUID portfolioId){
+        return portRep.findById(portfolioId).orElse(null);
     }
 
-    //작성자로 포폴조회
-    public Optional<Portfolio> selectPortfolioByUserId(UUID userId) {
-        return portRep.findById(userId);
+    //보트 아이디로 포폴조회
+    public Portfolio selectPortByVoteId(UUID voteId) {
+        Portfolio port = portRep.findByVoteId(voteId);
+        if(port  == null)
+            throw new RuntimeException("해당 포폴이 존재하지 않습니다.");
+        return port ;
     }
+
+
+    //유저 id으로 포폴조회
+    public Portfolio selectPortByUserId(UUID userId) {
+        Portfolio port = portRep.findByUserId(userId);
+        if(port  == null)
+            throw new RuntimeException("해당 포폴이 존재하지 않습니다.");
+        return port ;
+    }
+
+
 
     //위험도로 포트폴리오 조회
-    public List<Portfolio> selectPortfolioByWarnLevel(String warnLevel){
+    //public List<Portfolio> selectPortfolioByWarnLevel(String warnLevel){
 
-        return portRep.findByWarnLevel(warnLevel);
-    }
+    //     return portRep.findByWarnLevel(warnLevel);
+    //}
 
     //예상수익율로 포트폴리오 조회
-    public List<Portfolio> selectPortfolioByBeneRatio(Integer beneratio){
-        return portRep.findByBeneRatio(beneratio);
-    }
+    //public List<Portfolio> selectPortfolioByBeneRatio(Integer beneratio){
+    //    return portRep.findByBeneRatio(beneratio);
+    //}
 
     //포트폴리오 삭제
     public void delete(Portfolio portfolio){

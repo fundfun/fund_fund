@@ -26,4 +26,6 @@ public interface OpinionService {
 
     //표 삭제
     void delete(UUID opinionId);
+
+
 }
