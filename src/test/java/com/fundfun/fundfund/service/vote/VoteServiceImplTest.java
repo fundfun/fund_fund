@@ -17,20 +17,12 @@ class VoteServiceImplTest {
     @Test
     public void 투표_등록() throws Exception{
         for(int i=0; i<5; i++){
-            voteService.createVote(Vote.builder()
-                    .id(null)
-<<<<<<< HEAD
-                    .postId(null).voteStart(null)
-                    .voteEnd(null).build());
-=======
-                    .post(null).voteStart(null)
-                    .voteEnd(null).status(null).build());
->>>>>>> e8ce8d09d40bef0b5ac3790b9c57421fdfbb9e3c
+//            voteService.createVote(Vote.builder()
+//                    .id(null)
+//                    .postId(null).voteStart(null)
+//                    .voteEnd(null).build());
         }
     }
-
-
-
 
     @Test
     public void 상태_업데이트(){
