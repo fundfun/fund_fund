@@ -1,9 +1,9 @@
 // # Query DSL 추가
-buildscript {
-	ext {
-		queryDslVersion = "5.0.0"
-	}
-}
+//buildscript {
+//	ext {
+//		queryDslVersion = "5.0.0"
+//	}
+//}
 
 plugins {
 	id 'java'
@@ -12,7 +12,7 @@ plugins {
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
 
 	// # Query DSL 추가
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+	//id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.fundfun'
@@ -48,8 +48,8 @@ dependencies {
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
 	// # Query DSL 추가
-	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
-	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+//	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+//	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
 
 	//modelmapper
 	implementation 'org.modelmapper:modelmapper:2.4.4'
@@ -57,31 +57,31 @@ dependencies {
 }
 
 tasks.named('test') {
-	outputs.dir snippetsDir
+//	outputs.dir snippetsDir
 	useJUnitPlatform()
 }
 
-tasks.named('asciidoctor') {
-	inputs.dir snippetsDir
-	dependsOn test
-}
+//tasks.named('asciidoctor') {
+//	inputs.dir snippetsDir
+//	dependsOn test
+//}
 
 // # Query DSL 추가
-def querydslDir = "$buildDir/generated/querydsl"
-
-querydsl {
-	jpa = true
-	querydslSourcesDir = querydslDir
-}
-
-sourceSets {
-	main.java.srcDir querydslDir
-}
-
-configurations {
-	querydsl.extendsFrom compileClasspath
-}
-
-compileQuerydsl {
-	options.annotationProcessorPath = configurations.querydsl
-}
+//def querydslDir = "$buildDir/generated/querydsl"
+//
+//querydsl {
+//	jpa = true
+//	querydslSourcesDir = querydslDir
+//}
+//
+//sourceSets {
+//	main.java.srcDir querydslDir
+//}
+//
+//configurations {
+//	querydsl.extendsFrom compileClasspath
+//}
+//
+//compileQuerydsl {
+//	options.annotationProcessorPath = configurations.querydsl
+//}
