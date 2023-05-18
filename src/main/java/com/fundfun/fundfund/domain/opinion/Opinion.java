@@ -23,14 +23,26 @@ public class Opinion {
     private UUID id;
 
     @ManyToOne
+<<<<<<< HEAD
+    @JoinColumn(name="vote_id")
+    private Vote vote;
+
+    @ManyToOne
+=======
     @JoinColumn(name = "vote_id")
     private Vote vote;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+>>>>>>> e8ce8d09d40bef0b5ac3790b9c57421fdfbb9e3c
     private Users user;
 
+    @ManyToOne
+    @JoinColumn(name="portfolio_id")
     // portfolio id와 join 필요
+<<<<<<< HEAD
+    private Portfolio votedFor;
+=======
     @ManyToOne
     @JoinColumn(name="portfolio_id")
     private Portfolio votedFor;
@@ -40,4 +52,5 @@ public class Opinion {
     public void linkUsers(Users user) {this.user = user;}
 
     public void linkPortfolio(Portfolio portfolio) {this.votedFor = portfolio;}
+>>>>>>> e8ce8d09d40bef0b5ac3790b9c57421fdfbb9e3c
 }
