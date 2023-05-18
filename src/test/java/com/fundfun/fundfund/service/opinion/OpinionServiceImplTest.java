@@ -33,17 +33,16 @@ class OpinionServiceImplTest {
 
 
 
-    @Test
-    public void 표_등록() throws Exception {
-<<<<<<< HEAD
-        for(int i=0; i<10; i++)
-            opinionService.insert(Opinion.builder()
-                    .id(null)
-                    .user(null)
-                    .vote(null)
-                    .votedFor(null)
-                    .build());
-=======
+//  @Test
+    //  public void 표_등록() throws Exception {
+     //   for (int i = 0; i < 10; i++) {
+     //       opinionService.insert(Opinion.builder()
+      //              .id(null)
+         //           .user(null)
+            //        .vote(null)
+             //       .votedFor(null)
+                //    .build());
+//        }//   }
 //        for(int i=0; i<10; i++)
 //            opinionService.insert(Opinion.builder()
 //                    .id(null)
@@ -51,8 +50,7 @@ class OpinionServiceImplTest {
 //                    .vote(null)
 //                    .votedFor(null)
 //                    .build());
->>>>>>> e8ce8d09d40bef0b5ac3790b9c57421fdfbb9e3c
-    }
+//    }
 
     @Test
     public void 표_조회() throws Exception {
