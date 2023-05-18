@@ -21,6 +21,14 @@ public class ReplyServiceImpl implements ReplyService{
     @Autowired
     private final PostRepository postRep;
 
+    //댓글 아이디로 댓글 조회
+    public Reply selectById(UUID replyId){
+        Reply reply = replyRep.findById(replyId).orElse(null);
+        if(reply == null)
+            throw new RuntimeException("해당 댓글이 존재하지 않습니다.");
+        return reply;
+    }
+
     //댓글 전체 조회
     @Override
     public List<Reply> selectAll() {
@@ -72,5 +80,11 @@ public class ReplyServiceImpl implements ReplyService{
         if(re == null)
             throw new RuntimeException("존재하지 않는 댓글을 삭제할 수 없습니다.");
         replyRep.delete(re);
+    }
+
+    @Override
+    public int countByPostId(UUID postId) {
+        List<Reply> list = replyRep.findByPostId(postId);
+        return list.size();
     }
 }
