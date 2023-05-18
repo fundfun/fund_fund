@@ -20,11 +20,18 @@ import java.util.UUID;
     private final PortRepository portRep;
 
 
-    public void createPort(Post post, Users user, Vote vote){
+    public void createPort(Post post, Users user, Vote vote, String title, String contentPortfolio, float beneRatio, String warnLevel){
         Portfolio port = new Portfolio();
+
+        port.setTitle(title);
+        port.setContentPortfolio(contentPortfolio);
+        port.setWarnLevel(warnLevel);
+        port.setBeneRatio(beneRatio);
+
         port.linkPost(post);
         port.linkUsers(user);
         port.linkVote(vote);
+
         portRep.save(port);
     }
 

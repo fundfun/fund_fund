@@ -33,7 +33,7 @@ public class OpinionServiceImpl implements OpinionService{
 
     //portfolioId의 득표수 조회
     @Override
-    public int countByVotedFor(UUID votedFor) {
+    public int countByVotedFor(Portfolio votedFor) {
         List<Opinion> list = opinionRep.findByVotedFor(votedFor);
         return list.size();
     }

@@ -29,14 +29,16 @@ class PortfolioServiceImplTest {
  //       Users user = new Users();
  //       usersRepository.save(user);
         List<Post> list = postService.selectAll();
-        Post post = list.get(6);
+        Post post = list.get(0);
         Vote vote = voteService.selectVoteByPostId(post.getId());
 
-        portfolioService.createPort(post, null, vote);
+        for(int i=0; i<3; i++){
+            portfolioService.createPort(post, null, vote, "제목 "+ i, "내용 " + i, i+0.2F, "보통");
+        }
 
-        List<Portfolio> port= portfolioService.selectAll();
+        /*List<Portfolio> port= portfolioService.selectAll();
         for(Portfolio p : port){
-            System.out.println(/*user.getId()+*/"님이"+vote.getId()+"에 투표하심");
+            System.out.println(*//*user.getId()+*//*"님이"+vote.getId()+"에 투표하심");*/
     }
         /*for (int i = 0; i < 10; i++) {
             Portfolio port = Portfolio.builder()
@@ -47,7 +49,7 @@ class PortfolioServiceImplTest {
                     .build();
             portfolioService.createPort(port);
         }*/
-    }
+
     @Test
     public void 포폴전체조회() throws Exception {
         List<Portfolio> list = portfolioService.selectAll();

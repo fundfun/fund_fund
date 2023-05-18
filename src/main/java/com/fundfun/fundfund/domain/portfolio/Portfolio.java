@@ -37,7 +37,7 @@ public class Portfolio extends BaseTimeEntity {
     private String title;
     private String ContentPortfolio;
     private String warnLevel;
-    private int beneRatio;
+    private float beneRatio;
 
 
     public void linkVote(Vote vote) {this.vote = vote;}
@@ -53,6 +53,6 @@ public class Portfolio extends BaseTimeEntity {
         this.ContentPortfolio = ContentPortfolio;
     }
     public void setWarnLevel(String warnLevel){this.warnLevel = warnLevel;}
-    public void setBeneRatio(int beneRatio){this.beneRatio = beneRatio;}
+    public void setBeneRatio(float beneRatio){this.beneRatio = beneRatio;}
 
 }

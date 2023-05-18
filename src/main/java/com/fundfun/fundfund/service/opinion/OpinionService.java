@@ -16,7 +16,7 @@ public interface OpinionService {
     List<Opinion> selectByVoteId(UUID voteId);
 
     //portfolioId의 득표수 조회
-    int countByVotedFor(UUID votedFor);
+    int countByVotedFor(Portfolio portfolio);
 
     //표 등록
     void insertOpinion(Users user, Vote vote, Portfolio portfolio);

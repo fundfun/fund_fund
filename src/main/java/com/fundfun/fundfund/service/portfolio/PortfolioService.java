@@ -41,5 +41,5 @@ public interface PortfolioService {
     //포트폴리오 수정
     void updatePort(Portfolio portfolio);
 
-    void createPort(Post post, Users user, Vote vote);
+    void createPort(Post post, Users user, Vote vote, String title, String contentPortfolio, float beneRatio, String warnLevel);
 }
