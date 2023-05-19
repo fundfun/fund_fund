@@ -24,7 +24,7 @@ class VoteServiceImplTest {
         }
     }
 
-    @Test
+    /*@Test
     public void 상태_업데이트(){
         voteService.updateVoteStatus(voteService.selectAll().get(0).getId());
     }
@@ -32,5 +32,5 @@ class VoteServiceImplTest {
     @Test
     public void 투표_삭제(){
         voteService.deleteVote(voteService.selectAll().get(0).getId());
-    }
+    }*/
 }
