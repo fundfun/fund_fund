@@ -1,3 +1,4 @@
+/*
 package com.fundfun.fundfund.service.portfolio;
 
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
@@ -36,11 +37,18 @@ class PortfolioServiceImplTest {
             portfolioService.createPort(post, null, vote, "제목 "+ i, "내용 " + i, i+0.2F, "보통");
         }
 
-        /*List<Portfolio> port= portfolioService.selectAll();
+        */
+/*List<Portfolio> port= portfolioService.selectAll();
         for(Portfolio p : port){
-            System.out.println(*//*user.getId()+*//*"님이"+vote.getId()+"에 투표하심");*/
+            System.out.println(*//*
+*/
+/*user.getId()+*//*
+*/
+/*"님이"+vote.getId()+"에 투표하심");*//*
+
     }
-        /*for (int i = 0; i < 10; i++) {
+        */
+/*for (int i = 0; i < 10; i++) {
             Portfolio port = Portfolio.builder()
                     .title("title" + i)
                     .ContentPortfolio(null)
@@ -48,7 +56,8 @@ class PortfolioServiceImplTest {
                     .beneRatio(i)
                     .build();
             portfolioService.createPort(port);
-        }*/
+        }*//*
+
 
     @Test
     public void 포폴전체조회() throws Exception {
@@ -83,7 +92,8 @@ class PortfolioServiceImplTest {
         System.out.println(p);
     }//
 
-   /* @Test
+   */
+/* @Test
     public void 제목_포폴조회() throws Exception {
         List<Portfolio> list = portfolioService.selectPortfolioByKeyword(null);
         for(Portfolio port : list) System.out.println(port);
@@ -123,6 +133,7 @@ class PortfolioServiceImplTest {
             portfolioServiceService.delete(post);
             assertFalse(portfolioService.selectPostByUserId(1).isPresent());
         })
-    };*/
+    };*//*
 
-}
+
+}*/

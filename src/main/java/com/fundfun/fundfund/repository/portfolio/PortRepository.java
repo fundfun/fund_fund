@@ -1,6 +1,7 @@
 package com.fundfun.fundfund.repository.portfolio;
 
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
+import com.fundfun.fundfund.dto.portfolio.PortfolioDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,14 +11,10 @@ import java.util.UUID;
 @Repository
 public interface PortRepository extends JpaRepository<Portfolio, UUID> {
 
-   // List<Portfolio> findByWarnLevel(String warnLevel);
 
+    //Portfolio findById(UUID portfolioId);
 
-    // List<Portfolio> findByBeneRatio(int beneratio);
+    List<Portfolio> findByVoteId(UUID voteId);
 
-    List<Portfolio> findByTitle(String title);
-
-    Portfolio findByVoteId(UUID voteId);
-
-    Portfolio findByUserId(UUID userId);
+    List<Portfolio> findByUserId(UUID userId);
 }

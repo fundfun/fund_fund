@@ -10,4 +10,5 @@ import java.util.UUID;
 @Repository
 public interface VoteRepository extends JpaRepository<Vote, UUID> {
     Vote findByPostId(UUID postId);
+
 }

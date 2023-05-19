@@ -4,91 +4,94 @@ import com.fundfun.fundfund.domain.portfolio.Portfolio;
 import com.fundfun.fundfund.domain.post.Post;
 import com.fundfun.fundfund.domain.user.Users;
 import com.fundfun.fundfund.domain.vote.Vote;
+import com.fundfun.fundfund.dto.portfolio.PortfolioDto;
+import com.fundfun.fundfund.dto.post.PostDto;
 import com.fundfun.fundfund.repository.portfolio.PortRepository;
+import com.fundfun.fundfund.repository.post.PostRepository;
+import com.fundfun.fundfund.repository.vote.VoteRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
     public class PortfolioServiceImpl implements PortfolioService {
     @Autowired
     private final PortRepository portRep;
+    @Autowired
+    private final PostRepository postRepository;
 
+    @Autowired
+    private final VoteRepository voteRepository;
 
-    public void createPort(Post post, Users user, Vote vote, String title, String contentPortfolio, float beneRatio, String warnLevel){
-        Portfolio port = new Portfolio();
+    @Autowired
+    private final ModelMapper modelMapper;
 
-        port.setTitle(title);
-        port.setContentPortfolio(contentPortfolio);
-        port.setWarnLevel(warnLevel);
-        port.setBeneRatio(beneRatio);
-
-        port.linkPost(post);
-        port.linkUsers(user);
-        port.linkVote(vote);
-
-        portRep.save(port);
+    public void createPort(PortfolioDto portfolioDto, Post post, Users user, Vote vote, String title, String contentPortfolio, float beneRatio, String warnLevel){
+        Portfolio portfolio = modelMapper.map(portfolioDto, Portfolio.class);
+        portfolio.setTitle(title);
+        portfolio.setContentPortfolio(contentPortfolio);
+        portfolio.setWarnLevel(warnLevel);
+        portfolio.setBeneRatio(beneRatio);
+        portfolio.linkPost(post);
+        portfolio.linkUsers(user);
+        portfolio.linkVote(vote);
+        portRep.save(portfolio);
     }
 
     //전체 포폴조회
-    public List<Portfolio> selectAll() {
-        return portRep.findAll();
+    public List<PortfolioDto> selectAll() {
+        return portRep.findAll().stream()
+                .map(portfolio -> modelMapper.map(portfolio, PortfolioDto.class)).collect(Collectors.toList());
     }
+
 
     //포트폴리오 아이디로 포폴조회
-    public Portfolio selectPortById(UUID portfolioId){
-        return portRep.findById(portfolioId).orElse(null);
-    }
+    public PortfolioDto selectPortById(UUID portfolioId){
+        Portfolio portfolio = portRep.findById(portfolioId).orElse(null);
+
+        //return modelMapper.map(portRep.findById(portfolioId).orElse(null), PortfolioDto.class));
+        return modelMapper.map(portfolio, PortfolioDto.class);
+    };
+
 
     //보트 아이디로 포폴조회
-    public Portfolio selectPortByVoteId(UUID voteId) {
-        Portfolio port = portRep.findByVoteId(voteId);
-        if(port  == null)
-            throw new RuntimeException("해당 포폴이 존재하지 않습니다.");
-        return port ;
+    public List<PortfolioDto> selectPortByVoteId(UUID voteId) {
+        return portRep.findByVoteId(voteId).stream().map(portfolio -> modelMapper.map(portfolio, PortfolioDto.class)).collect(Collectors.toList());
+
     }
 
 
     //유저 id으로 포폴조회
-    public Portfolio selectPortByUserId(UUID userId) {
-        Portfolio port = portRep.findByUserId(userId);
-        if(port  == null)
-            throw new RuntimeException("해당 포폴이 존재하지 않습니다.");
-        return port ;
+    public List<PortfolioDto> selectPortByUserId(UUID userId) {
+        return portRep.findByUserId(userId).stream().map(portfolio -> modelMapper.map(portfolio, PortfolioDto.class)).collect(Collectors.toList());
+
     }
 
-
-
-    //위험도로 포트폴리오 조회
-    //public List<Portfolio> selectPortfolioByWarnLevel(String warnLevel){
-
-    //     return portRep.findByWarnLevel(warnLevel);
-    //}
-
-    //예상수익율로 포트폴리오 조회
-    //public List<Portfolio> selectPortfolioByBeneRatio(Integer beneratio){
-    //    return portRep.findByBeneRatio(beneratio);
-    //}
-
     //포트폴리오 삭제
-    public void delete(Portfolio portfolio){
+    public void deletePort(UUID portfolioId){
+        Portfolio portfolio = portRep.findById(portfolioId).orElse(null);
+
+        if(portfolio == null)
+            throw new RuntimeException("해당 게시물이 존재하지 않습니다.");
         portRep.delete(portfolio);
     }
 
     //포트폴리오 수정
-    public void updatePort(Portfolio portfolio){
-        Portfolio existingPort = portRep.findById(portfolio.getId()).orElse(null);
+    public void updatePort(PortfolioDto portfolioDto){
+        //Portfolio existingPort = portRep.findById(portfolio.getId()).orElse(null);
+        Portfolio existingPort = modelMapper.map(portfolioDto, Portfolio.class);
         if (existingPort != null) {
             // 변경할 필드값을 업데이트합니다.
-            existingPort.setTitle(portfolio.getTitle());
-            existingPort.setContentPortfolio(portfolio.getContentPortfolio());
-            existingPort.setWarnLevel(portfolio.getWarnLevel());
-            existingPort.setBeneRatio(portfolio.getBeneRatio());
+            existingPort.setTitle(portfolioDto.getTitle());
+            existingPort.setContentPortfolio(portfolioDto.getContentPortfolio());
+            existingPort.setWarnLevel(portfolioDto.getWarnLevel());
+            existingPort.setBeneRatio(portfolioDto.getBeneRatio());
 
             // 게시물을 저장하여 업데이트합니다.
             portRep.save(existingPort);

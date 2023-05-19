@@ -25,7 +25,6 @@ public class VoteServiceImpl implements VoteService{
     public Vote createVote(VoteDto voteDto) {
         // Vote 생성 로직
         Vote vote = modelMapper.map(voteDto, Vote.class);
-
         return voteRepository.save(vote);
     }
 
