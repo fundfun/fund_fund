@@ -1,10 +1,10 @@
+
 package com.fundfun.fundfund.domain.vote;
 
 import com.fundfun.fundfund.domain.opinion.Opinion;
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
 import com.fundfun.fundfund.domain.post.Post;
 
-import com.fundfun.fundfund.dto.post.PostDto;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
