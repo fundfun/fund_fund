@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Data
 public class VoteDto {
-    private int id;
+    private UUID id;
     private UUID postId;
     private LocalDateTime voteStart;
     private LocalDateTime voteEnd;

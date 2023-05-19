@@ -59,8 +59,8 @@ public class ReplyServiceImpl implements ReplyService{
 
     //유저 아이디로 댓글 조회
     @Override
-    public List<ReplyDto> selectReplyByUserId(UUID userId) {
-        return replyRep.findByUserId(userId).stream().map(reply -> modelMapper.map(reply, ReplyDto.class)).collect(Collectors.toList());
+    public List<ReplyDto> selectReplyByUser(Users user) {
+        return replyRep.findByUser(user).stream().map(reply -> modelMapper.map(reply, ReplyDto.class)).collect(Collectors.toList());
     }
 
     @Override

@@ -42,7 +42,7 @@ public class OpinionServiceImpl implements OpinionService{
     @Override
     public List<OpinionDto> selectByVoteId(VoteDto voteDto) {
         Vote vote = modelMapper.map(voteDto, Vote.class);
-        return opinionRep.findByVoteId(vote).stream()
+        return opinionRep.findByVote(vote).stream()
                 .map(opinion -> modelMapper.map(opinion, OpinionDto.class))
                 .collect(Collectors.toList());
     }

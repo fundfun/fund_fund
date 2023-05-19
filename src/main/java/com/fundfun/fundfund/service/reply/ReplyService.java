@@ -20,7 +20,7 @@ public interface ReplyService {
     List<ReplyDto> selectReplyByPostId(PostDto postDto);
 
     //유저 아이디로 댓글 조회
-    List<ReplyDto> selectReplyByUserId(UUID userId);
+    List<ReplyDto> selectReplyByUser(Users user);
 
     //댓글 등록
     //void insertReply(Post post, Users user, String content);
