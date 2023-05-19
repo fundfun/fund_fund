@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class PostDto {
-    private int id;
+    private UUID id;
     private String title;
     private String contentPost;
     private int likePost;
