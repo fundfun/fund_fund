@@ -1,11 +1,15 @@
 package com.fundfun.fundfund.domain.vote;
 
+import com.fundfun.fundfund.domain.opinion.Opinion;
+import com.fundfun.fundfund.domain.portfolio.Portfolio;
 import com.fundfun.fundfund.domain.post.Post;
 
 import com.fundfun.fundfund.dto.post.PostDto;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -43,3 +47,4 @@ public class Vote {
 
     public void linkPost(Post post) {this.post = post;}
 }
+
