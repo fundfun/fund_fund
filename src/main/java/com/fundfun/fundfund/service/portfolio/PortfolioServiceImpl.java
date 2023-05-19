@@ -1,12 +1,8 @@
 package com.fundfun.fundfund.service.portfolio;
 
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
-import com.fundfun.fundfund.domain.post.Post;
-import com.fundfun.fundfund.domain.user.Users;
-import com.fundfun.fundfund.domain.vote.Vote;
 import com.fundfun.fundfund.dto.portfolio.PortfolioDto;
-import com.fundfun.fundfund.dto.post.PostDto;
-import com.fundfun.fundfund.repository.portfolio.PortRepository;
+import com.fundfun.fundfund.repository.portfolio.PortfolioRepository;
 import com.fundfun.fundfund.repository.post.PostRepository;
 import com.fundfun.fundfund.repository.vote.VoteRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
     public class PortfolioServiceImpl implements PortfolioService {
     @Autowired
-    private final PortRepository portRep;
+    private final PortfolioRepository portRep;
     @Autowired
     private final PostRepository postRepository;
 
@@ -32,15 +28,8 @@ import java.util.stream.Collectors;
     @Autowired
     private final ModelMapper modelMapper;
 
-    public void createPort(PortfolioDto portfolioDto, Post post, Users user, Vote vote, String title, String contentPortfolio, float beneRatio, String warnLevel){
+    public void createPort(PortfolioDto portfolioDto){
         Portfolio portfolio = modelMapper.map(portfolioDto, Portfolio.class);
-        portfolio.setTitle(title);
-        portfolio.setContentPortfolio(contentPortfolio);
-        portfolio.setWarnLevel(warnLevel);
-        portfolio.setBeneRatio(beneRatio);
-        portfolio.linkPost(post);
-        portfolio.linkUsers(user);
-        portfolio.linkVote(vote);
         portRep.save(portfolio);
     }
 

@@ -25,12 +25,15 @@ public class Portfolio extends BaseTimeEntity {
     private UUID id;
 
     @ManyToOne
+    @JoinColumn(name="vote_id")
     private Vote vote;
 
     @OneToOne
+    @JoinColumn(name="user_id")
     private Users user;
 
     @ManyToOne
+    @JoinColumn(name="post_id")
     private Post post;
 
 

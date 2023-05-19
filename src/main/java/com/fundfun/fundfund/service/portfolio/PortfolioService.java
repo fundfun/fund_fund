@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface PortfolioService {
 
     //포트폴리오 생성
-    void createPort(PortfolioDto portDto, Post post, Users user, Vote vote, String title, String contentPortfolio, float beneRatio, String warnLevel);
+    void createPort(PortfolioDto portDto);
 
 
     //전체 포트폴리오 조회

@@ -35,7 +35,7 @@ class PostServiceImplTest {
 //                    .id(UUID.randomUUID()).contentPost(null).build();
 //            postService.createPost(modelMapper.map(p, PostDto.class));
 //        }
-        Post p = Post.builder().id(UUID.randomUUID()).contentPost("게시물").categoryPost("주식형").build();
+        Post p = Post.builder().id(UUID.randomUUID()).title("제목2").contentPost("게시물2").categoryPost("주식형").build();
         postService.createPost(modelMapper.map(p, PostDto.class));
     }
 

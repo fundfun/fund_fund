@@ -2,21 +2,17 @@ package com.fundfun.fundfund.service.opinion;
 
 import com.fundfun.fundfund.domain.opinion.Opinion;
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
-import com.fundfun.fundfund.domain.post.Post;
 import com.fundfun.fundfund.domain.user.Users;
 import com.fundfun.fundfund.domain.vote.Vote;
 import com.fundfun.fundfund.dto.opinion.OpinionDto;
 import com.fundfun.fundfund.dto.portfolio.PortfolioDto;
 import com.fundfun.fundfund.dto.vote.VoteDto;
 import com.fundfun.fundfund.repository.opinion.OpinionRepository;
-import com.fundfun.fundfund.repository.portfolio.PortRepository;
-import com.fundfun.fundfund.service.portfolio.PortfolioService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;

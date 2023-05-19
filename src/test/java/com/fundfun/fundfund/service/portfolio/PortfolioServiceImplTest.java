@@ -1,14 +1,17 @@
-/*
 package com.fundfun.fundfund.service.portfolio;
 
 import com.fundfun.fundfund.domain.portfolio.Portfolio;
 import com.fundfun.fundfund.domain.post.Post;
 import com.fundfun.fundfund.domain.user.Users;
 import com.fundfun.fundfund.domain.vote.Vote;
+import com.fundfun.fundfund.dto.portfolio.PortfolioDto;
+import com.fundfun.fundfund.dto.post.PostDto;
+import com.fundfun.fundfund.dto.vote.VoteDto;
 import com.fundfun.fundfund.service.portfolio.PortfolioService;
 import com.fundfun.fundfund.service.post.PostService;
 import com.fundfun.fundfund.service.vote.VoteService;
 import org.junit.jupiter.api.Test;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,116 +27,70 @@ class PortfolioServiceImplTest {
     PostService postService;
     @Autowired
     VoteService voteService;
+    @Autowired
+    ModelMapper modelMapper;
 
     @Test
     public void 포폴생성() throws Exception {
- //       Users user = new Users();
- //       usersRepository.save(user);
-        List<Post> list = postService.selectAll();
-        Post post = list.get(0);
-        Vote vote = voteService.selectVoteByPostId(post.getId());
+        List<PostDto> list = postService.selectAll();
+        PostDto postDto = list.get(0);
+        Post post = modelMapper.map(postDto, Post.class);
+        VoteDto voteDto = voteService.selectVoteByPostId(post.getId());
+        Vote vote = modelMapper.map(voteDto, Vote.class);
 
-        for(int i=0; i<3; i++){
-            portfolioService.createPort(post, null, vote, "제목 "+ i, "내용 " + i, i+0.2F, "보통");
-        }
+        PortfolioDto portfolioDto = new PortfolioDto();
+        portfolioDto.setId(UUID.randomUUID());
+        portfolioDto.setVoteId(vote.getId());
+        portfolioDto.setUserId(null);
+        portfolioDto.setPostId(post.getId());
+        portfolioDto.setTitle("제목");
+        portfolioDto.setContentPortfolio("내용..");
+        portfolioDto.setWarnLevel("d");
+        portfolioDto.setBeneRatio(2.3F);
 
-        */
-/*List<Portfolio> port= portfolioService.selectAll();
-        for(Portfolio p : port){
-            System.out.println(*//*
-*/
-/*user.getId()+*//*
-*/
-/*"님이"+vote.getId()+"에 투표하심");*//*
-
+        portfolioService.createPort(portfolioDto);
     }
-        */
-/*for (int i = 0; i < 10; i++) {
-            Portfolio port = Portfolio.builder()
-                    .title("title" + i)
-                    .ContentPortfolio(null)
-                    .warnLevel(null)
-                    .beneRatio(i)
-                    .build();
-            portfolioService.createPort(port);
-        }*//*
-
 
     @Test
     public void 포폴전체조회() throws Exception {
-        List<Portfolio> list = portfolioService.selectAll();
-        for(Portfolio port : list) System.out.println(port);
+        List<PortfolioDto> list = portfolioService.selectAll();
+        for (PortfolioDto port : list) System.out.println(port);
     }
 
+    @Test
+    public void 포폴아이디로조회() throws Exception {
+        List<PortfolioDto> list = portfolioService.selectAll();
+        UUID uuid = list.get(0).getId();
+        PortfolioDto portfolioDto = portfolioService.selectPortById(uuid);
+        Portfolio p = modelMapper.map(portfolioDto, Portfolio.class);
+        System.out.println(p.getId() + " , " + p.getContentPortfolio());
+    }
 
     @Test
-    public void 포폴아이디로조회()throws Exception {
-        List<Portfolio> list = portfolioService.selectAll();
-        UUID uuid= list.get(0).getId();
-        Portfolio p = portfolioService.selectPortById(uuid);
-        System.out.println(p);
+    public void 보트아이디조회() throws Exception {
+        List<PortfolioDto> list = portfolioService.selectAll();
+        UUID uuid = list.get(10).getId();
+        List<PortfolioDto> p = portfolioService.selectPortByVoteId(uuid);
+
+        for (PortfolioDto pd : p) {
+            System.out.println(pd.getId());
+        }
     }//
 
     @Test
-    public void 보트아이디조회()throws Exception {
-        List<Portfolio> list = portfolioService.selectAll();
-        UUID uuid= list.get(10).getId();
-        Portfolio p = portfolioService.selectPortByVoteId(uuid);
-        System.out.println(uuid);
-        System.out.println(p);
-    }//
-
-    @Test
-    public void 유저아이디조회()throws Exception {
-        Users user = new Users();
-        List<Portfolio> list = portfolioService.selectAll();
-        UUID uuid= list.get(6).getId();
-        Portfolio p = portfolioService.selectPortByUserId(uuid);
-        System.out.println(p);
-    }//
-
-   */
-/* @Test
-    public void 제목_포폴조회() throws Exception {
-        List<Portfolio> list = portfolioService.selectPortfolioByKeyword(null);
-        for(Portfolio port : list) System.out.println(port);
+    public void 포트폴리오_삭제() throws Exception {
+        List<PortfolioDto> list = portfolioService.selectAll();
+        PortfolioDto portfolioDto = list.get(0);
+        portfolioService.deletePort(portfolioDto.getId());
     }
 
-    @Test
-    public void 작성자_포폴조회() throws Exception {
-        Optional<Portfolio> olist = portfolioService.selectPortfolioByUserId(UUID.randomUUID());
-        olist.ifPresent(portfolio -> System.out.println(portfolio));
+//    @Test
+//    public void 유저아이디조회 ()throws Exception {
+//        Users user = new Users();
+//        List<PortfolioDto> list = portfolioService.selectAll();
+//        UUID uuid = list.get(6).getId();
+//        Portfolio p = portfolioService.selectPortByUserId(uuid);
+//        System.out.println(p);
+//    }//
 
-    }
-
-    @Test
-    public void 위험도_포폴조회() throws Exception {
-        List<Portfolio> list = portfolioService.selectPortfolioByWarnLevel(null);
-        for(Portfolio port : list) System.out.println(port);
-    }
-
-    @Test
-    public void 예상수익률_포폴조회() throws Exception {
-        List<Portfolio> list = portfolioService.selectPortfolioByBeneRatio(1);
-        for(Portfolio port : list) System.out.println(port);
-    }
-
-    /*
-    @Test
-    public void 게시물삭제() throws Exception {
-
-        UUID uuid = portfolioService.selectAll().get(0).getId();
-        Optional<Post> postToDelete = portfolioService.selectPortfolioByUserId(uuid);
-
-        // 게시물이 존재하는지 확인
-        assertTrue(postToDelete.isPresent());
-
-        // 게시물 삭제
-        postToDelete.ifPresent(post -> {
-            portfolioServiceService.delete(post);
-            assertFalse(portfolioService.selectPostByUserId(1).isPresent());
-        })
-    };*//*
-
-
-}*/
+}
