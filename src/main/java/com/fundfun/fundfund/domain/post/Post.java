@@ -11,6 +11,7 @@ import com.fundfun.fundfund.domain.portfolio.Portfolio;
 
 import com.fundfun.fundfund.util.BaseTimeEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,7 +30,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Post extends BaseTimeEntity {
 
     @Id
@@ -48,6 +49,7 @@ public class Post extends BaseTimeEntity {
     @Builder.Default
     private StPost statusPost = StPost.EARLY_IDEA;
     @OneToMany(mappedBy = "post")
+    @Builder.Default
     private List<Portfolio> portfolios = new ArrayList<>();
     public void setStatusPost(StPost statusPost) {
         this.statusPost = statusPost;
