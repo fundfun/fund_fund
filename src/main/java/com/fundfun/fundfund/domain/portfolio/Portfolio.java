@@ -51,6 +51,7 @@ public class Portfolio extends BaseTimeEntity {
     private String warnLevel;
     private float beneRatio;
 
+
     public void linkVote(Vote vote) {this.vote = vote;}
 
     public void linkUsers(Users user) {this.user = user;}

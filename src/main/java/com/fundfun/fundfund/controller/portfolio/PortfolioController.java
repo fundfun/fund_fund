@@ -23,7 +23,6 @@ import java.util.*;
 @Controller
 @RequiredArgsConstructor
 public class PortfolioController {
-
     @Autowired
     private final PortfolioService portfolioService;
     @Autowired
@@ -32,7 +31,6 @@ public class PortfolioController {
     @Autowired
     private final VoteService voteService;
 
-    // 포트폴리오 목록 이동
     @GetMapping("/portfolio")
     public String goPortfolioList(HttpServletRequest req, HttpServletResponse res, Model model, @AuthenticationPrincipal Users user) {
         String reqData = req.getParameter("postId");
@@ -77,8 +75,7 @@ public class PortfolioController {
         //존재하지 않은 게시물 처리
     }
 
-
-    // 포트폴리오 목록 데이터 - ajax
+   /* // 포트폴리오 목록 불러오기 - ajax (0521 코드)
     @PostMapping(value = "/portfolio/getData")
     @ResponseBody
     public HashMap<String, Object> getData(@RequestBody Map<String, Object> paramMap) {
