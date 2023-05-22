@@ -1,6 +1,7 @@
 package com.fundfun.fundfund.domain.post;
 
 
+import com.fundfun.fundfund.domain.user.Users;
 import com.fundfun.fundfund.domain.vote.Vote;
 import com.fundfun.fundfund.dto.vote.VoteDto;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,8 @@ import com.fundfun.fundfund.domain.portfolio.Portfolio;
 
 import com.fundfun.fundfund.util.BaseTimeEntity;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,7 +32,7 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 public class Post extends BaseTimeEntity {
 
     @Id
@@ -47,8 +50,14 @@ public class Post extends BaseTimeEntity {
     //@ColumnDefault("'EARLY_IDEA'")
     @Builder.Default
     private StPost statusPost = StPost.EARLY_IDEA;
-    @OneToMany(mappedBy = "post")
-    private List<Portfolio> portfolios = new ArrayList<>();
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private Users user;
+
+//    @OneToMany(mappedBy = "post")
+//    private List<Portfolio> portfolios = new ArrayList<>();
     public void setStatusPost(StPost statusPost) {
         this.statusPost = statusPost;
     }
