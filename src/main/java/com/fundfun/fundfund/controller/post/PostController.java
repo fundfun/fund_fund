@@ -186,7 +186,6 @@ public class PostController {
                 return "redirect:/post/list";
             }
         } else {
-
             throw new RuntimeException("해당 글의 글쓴이만 게시물을 수정할 수 있습니다.");
         }
     }
