@@ -164,6 +164,7 @@ public class PostController {
         int startPage = nowPage - temp;
 
         model.addAttribute("postList", postDtoList);
+
         model.addAttribute("keyword", keyword);
 
         model.addAttribute("blockCount", BLOCK_COUNT);
