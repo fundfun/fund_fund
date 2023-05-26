@@ -84,7 +84,7 @@ public class OrderController {
         model.addAttribute("product", productDto);
         model.addAttribute("invest", investDto);
         model.addAttribute("encId", encId);
-        model.addAttribute("user", UserMapper.toDto(adapter.getUser()));
+ //       model.addAttribute("user", UserMapper.toDto(adapter.getUser()));
 
         return "order/order_receipt";
     }
