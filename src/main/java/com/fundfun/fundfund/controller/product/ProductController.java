@@ -1,15 +1,12 @@
 package com.fundfun.fundfund.controller.product;
 
-import com.fundfun.fundfund.domain.product.Product;
 import com.fundfun.fundfund.domain.user.UserAdapter;
 import com.fundfun.fundfund.domain.user.UserDTO;
-import com.fundfun.fundfund.domain.user.Users;
 import com.fundfun.fundfund.dto.product.ProductDto;
 import com.fundfun.fundfund.service.order.OrderService;
 import com.fundfun.fundfund.service.product.ProductService;
 import com.fundfun.fundfund.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.id.insert.Binder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,9 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -192,6 +187,10 @@ public class ProductController {
         return "index";
     }
 
+    @GetMapping("/index/fund")
+    public String indexFund() {
+        return "index_fund";
+    }
     @GetMapping("/index/user")
     public String indexUser() {
         return "index_user";

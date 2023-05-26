@@ -14,12 +14,12 @@
             }
 
             #login-btn {
-                width: 250px;
+                width: 80%;
                 height: 60px;
                 background-color: #7F7368;
                 color: white;
                 border-radius: 15px;
-                margin:10px 0;
+                margin: 10px 0;
             }
 
             #login-wrapper {
@@ -27,12 +27,6 @@
                 height: 300px;
                 background-color: #FFCE0B;
                 margin: 10px;
-            }
-
-            .sub-main {
-                background-color: lightgrey;
-                padding: 10px;
-                border-radius: 20px;
             }
 
             .d-flex {
@@ -45,18 +39,22 @@
                 border-bottom: 1px solid;
                 font-size: large;
             }
-            .col img{
-                width:300px;
-                height:300px;
-            }
-            .col{
+
+            .col {
                 border-radius: 20px;
-                text-align:center;
-                margin:10px;
+                text-align: center;
+                margin: 10px;
             }
-            a{
+
+            a {
                 color: inherit;
                 text-decoration: none;
+            }
+
+            a.login {
+                justify-content: center;
+                width: 100%;
+                display: flex;
             }
         </style>
     </head>
@@ -94,8 +92,10 @@
             </div>
 
             <div class="d-flex flex-column justify-content-center align-items-center" id="login-wrapper">
-                <button class="btn btn-lg" id="login-btn" type="button">Login</button>
-                <a href="register.html">회원가입</a> </span>
+                <a class="login" href="/login">
+                    <button class="btn btn-lg" id="login-btn" type="submit">Login</button>
+                </a>
+                <a href="register">회원가입</a> </span>
             </div>
         </div>
         <div class="d-flex justify-content-center">
@@ -111,7 +111,7 @@
 
                 <tbody>
                 <!--<tr th:each="post, index:${postList}">
-                    <td th:text="${index}">no</td>
+                    <td th:text="${index.index}">no</td>
                     <td th:text="${post.title}">title</td>
                     <td th:text="${post.user}">writer</td>
                     <td th:text="${post.createdAt}">pastDate</td>
@@ -119,21 +119,21 @@
                 </tr>-->
 
                 <tr>
-                    <td>no1</td>
+                    <td>1</td>
                     <td>title1</td>
                     <td>writer1</td>
                     <td>postDate1</td>
                     <td>status1</td>
                 </tr>
                 <tr>
-                    <td>no2</td>
+                    <td>2</td>
                     <td>title2</td>
                     <td>writer2</td>
                     <td>postDate2</td>
                     <td>status2</td>
                 </tr>
                 <tr>
-                    <td>no3</td>
+                    <td>3</td>
                     <td>title3</td>
                     <td>writer3</td>
                     <td>postDate3</td>
