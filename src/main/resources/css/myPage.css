@@ -50,10 +50,13 @@
 .sample {
   width: 195px;
   height: 100px;
+  padding-left: 30px;
+  padiing-right: 100px;
 }
 
 .info-wrapper {
-  width: 400px;
+  width: 100%;
+  max-width: 800px;
   padding: 30px;
 }
 
@@ -86,8 +89,9 @@
 .invest-wrapper {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e8e6e6;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .invest-info {
@@ -114,6 +118,7 @@
 
 .invest-info-wrapper {
   padding: 30px;
+  width: 100%;
 }
 
 .invest-title {
@@ -125,7 +130,7 @@
 .invest-box {
   width: 400px;
   height: 200px;
-  background: #cecece;
+  background: #e8e6e6;
 }
 
 .invest-boarder {
