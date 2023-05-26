@@ -89,16 +89,6 @@ public class VoteServiceImpl implements VoteService{
     /*
     투표 상태 체크 및 업데이트
      */
-/*    public boolean updateVoteStatus(VoteDto voteDto) {
-
-        //조건
-            Vote vote = modelMapper.map(voteDto, Vote.class);
-            voteRepository.save(vote);
-            return true;
-        }
-        return false;
-    }*/
-
     public boolean updateVoteStatus(VoteDto voteDto) {
         Vote vote = modelMapper.map(voteDto, Vote.class);
 
