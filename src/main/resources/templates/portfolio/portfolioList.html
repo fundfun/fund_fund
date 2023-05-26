@@ -75,8 +75,6 @@
                     }
                 }
             });
-
-
         });
 
         // 포트폴리오 목록 데이터 가져오기
@@ -115,15 +113,6 @@
             // idx : 포트폴리오Id, state : 상세/수정/작성 구분코드
             location.href = "/portfolio/goDetail?id=" + idx + "&state=" + "R&postId=" + postId;
         }
-
-        function visibleButton(){
-            if(vtStatus == "PROCEED"){
-                $("#vote").show();
-            }
-            else{
-                $("#vote").hide();
-            }
-        }
     </script>
 
     <div class="d-flex flex-column wrapper">
@@ -141,8 +130,6 @@
         <div class="marginBottom bottomDiv">
             <button class="rightArea bg-yellow paddingBtn" id="goWrite" th:if="${authChk == 2}">포트폴리오 등록</button>
             <button class="rightArea left_margin bg-yellow paddingBtn" id="vote">투표하기</button>
-
-            </th:if>
         </div>
     </div>
 
