@@ -124,7 +124,7 @@
                 <div class="inner">
                     <div class="inner-top">
                         <div class="order-main-left-section">
-                            <img src="/gen/product/avatar.jpg" alt="프로필">
+                            <img th:src="@{/img/profiles/{id}(id=${imgDir})}" alt="프로필">
                         </div>
                         <div class="order-main-right-section">
                             <div style="font-size: small;color:grey">투자자</div>
@@ -187,10 +187,10 @@
                 <div class="col">
                     <!--                    <a th:href="@{|/order/form/${product.uuid}|}"></a>-->
                     <div class="d-flex flex-column" style="height:400px">
-                        <div style="padding:20px">
-                            <img src="/gen/product/gom.jpg" style="height: 200px;">
+                        <div style="height:70%">
+                            <img th:src="@{|/gen/${product.getThumbnailImgRedirectUrl}|}" style="height: 100%;width:70%;padding-top:10px">
                         </div>
-                        <div style="padding:20px;">
+                        <div style="padding-top:10px">
                             <div style="font-size: 25px;font-weight: bold" th:text="${product.title}"></div>
                             <div th:text="|<${product.fundManager.name} 펀드매니저>|"></div>
                             <div style="padding:10px;font-style: italic"
